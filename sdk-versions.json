@@ -9,7 +9,7 @@
         "container": "ghcr.io/iotactical/dbsdk-atak-civ:5.6.0.13",
         "java_version": "17",
         "gradle_version": "8.14.3",
-        "ndk_version": "27.2.12335124",
+        "ndk_version": "27.2.12479018",
         "android_api": "36",
         "compile_sdk": "36",
         "is_latest": true,
