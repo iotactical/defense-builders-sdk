@@ -102,11 +102,11 @@ workflow_discover_versions() {
     # Check if discovery was successful
     if [[ "$discovered_versions" == "[]" || "$discovered_versions" == "null" ]]; then
         gh_warning "No versions discovered via GitHub API for $sdk_type"
-        
+
         if [[ -n "$fallback_versions" ]]; then
             gh_notice "Using fallback versions: $fallback_versions"
             discovered_versions="$fallback_versions"
-            
+
             gh_summary "**Status**: ⚠️ Fallback versions used"
             gh_summary "**Reason**: No repositories found matching pattern"
         else
@@ -119,6 +119,32 @@ workflow_discover_versions() {
         gh_notice "Successfully discovered $(echo "$discovered_versions" | jq '. | length') versions for $sdk_type"
         gh_summary "**Status**: ✅ Success"
         gh_summary "**Method**: GitHub API repository discovery"
+
+        # Merge with fallback versions to include any that were not yet discovered
+        # (e.g., newly added versions whose upstream repos are not yet populated)
+        if [[ -n "$fallback_versions" ]]; then
+            local merged_versions
+            merged_versions=$(jq -n \
+                --argjson discovered "$discovered_versions" \
+                --argjson fallback "$fallback_versions" \
+                '$discovered + $fallback | unique | sort')
+            local merged_count
+            merged_count=$(echo "$merged_versions" | jq 'length')
+            local discovered_count
+            discovered_count=$(echo "$discovered_versions" | jq 'length')
+
+            if [[ "$merged_count" -gt "$discovered_count" ]]; then
+                local new_from_fallback
+                new_from_fallback=$(jq -n \
+                    --argjson discovered "$discovered_versions" \
+                    --argjson fallback "$fallback_versions" \
+                    '$fallback - $discovered | join(", ")')
+                gh_notice "Added versions from fallback not yet in upstream: $new_from_fallback"
+                gh_summary "**Merged from fallback**: $new_from_fallback"
+            fi
+
+            discovered_versions="$merged_versions"
+        fi
     fi
     
     echo "Discovered versions: $discovered_versions"
