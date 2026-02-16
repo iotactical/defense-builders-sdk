@@ -9,20 +9,22 @@
 
 | SDK Version | Container Image | Size | Last Updated | Status | Features |
 |-------------|-----------------|------|--------------|---------|----------|
+| **v5.6.0.13** | `ghcr.io/iotactical/dbsdk-atak-civ:5.6.0.13` | ~2.3GB | 2025-02 | ✅ Active | Java 17, Gradle 8.14.3, NDK 27.2, API 36 |
 | **v5.5.0.5** | `ghcr.io/iotactical/dbsdk-atak-civ:5.5.0.5` | ~2.1GB | 2025-08-27 | ✅ Active | Enhanced DSM manager, improved documentation |
 | **v5.4.0.21** | `ghcr.io/iotactical/dbsdk-atak-civ:5.4.0.21` | ~2.1GB | 2025-08-27 | ✅ Active | Action bar APIs, Typst user manual support |
 | **v5.3.0.12** | `ghcr.io/iotactical/dbsdk-atak-civ:5.3.0.12` | ~2.1GB | 2025-08-27 | ✅ Active | Foundation release, core ATAK features |
 
-**Latest Tag**: `ghcr.io/iotactical/dbsdk-atak-civ:latest` → `5.5.0.5`
+**Latest Tag**: `ghcr.io/iotactical/dbsdk-atak-civ:latest` -> `5.6.0.13`
 
 ## 🔧 Technical Specifications
 
 ### All ATAK-CIV Containers Include
 
 - **Base OS**: Ubuntu 22.04 LTS
-- **Java Runtime**: Adoptium OpenJDK 11 (LTS)
-- **Android SDK**: Command-line tools with API 21, 30, 33
-- **Build Tools**: Gradle 7.6, ProGuard configuration
+- **Java Runtime**: v5.6.0.13: OpenJDK 17, earlier versions: OpenJDK 11
+- **Android SDK**: Command-line tools (v5.6.0.13: API 30, 33, 36; earlier: API 21, 30, 33)
+- **Build Tools**: v5.6.0.13: Gradle 8.14.3, earlier: Gradle 7.6; ProGuard configuration
+- **NDK**: v5.6.0.13: NDK 27.2 (earlier versions: not included)
 - **Development Tools**: Maven, Git, essential utilities
 - **ATAK SDK**: Version-specific ATAK-CIV SDK extracted and configured
 - **Plugin Templates**: Ready-to-use ATAK plugin development templates
@@ -56,10 +58,10 @@ mkdir my-atak-plugin && cd my-atak-plugin
 # Start versioned development environment
 docker run -it --rm \
   -v $(pwd):/workspaces/plugin \
-  ghcr.io/iotactical/dbsdk-atak-civ:5.5.0.5
+  ghcr.io/iotactical/dbsdk-atak-civ:5.6.0.13
 
 # Inside container:
-cp -r /opt/atak-civ/5.5.0.5/PluginTemplate/* .
+cp -r /opt/atak-civ/5.6.0.13/samples/plugintemplate/* .
 ./gradlew civDebug
 ```
 
@@ -67,7 +69,7 @@ cp -r /opt/atak-civ/5.5.0.5/PluginTemplate/* .
 ```json
 {
   "name": "ATAK Plugin Development",
-  "image": "ghcr.io/iotactical/dbsdk-atak-civ:5.5.0.5",
+  "image": "ghcr.io/iotactical/dbsdk-atak-civ:5.6.0.13",
   "workspaceFolder": "/workspaces",
   "forwardPorts": [8080],
   "postCreateCommand": "echo 'ATAK development environment ready!'"

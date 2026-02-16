@@ -4,14 +4,26 @@
     "description": "Android Team Awareness Kit Civilian SDK",
     "versions": [
       {
+        "version": "5.6.0.13",
+        "label": "5.6.0.13 (Latest)",
+        "container": "ghcr.io/iotactical/dbsdk-atak-civ:5.6.0.13",
+        "java_version": "17",
+        "gradle_version": "8.14.3",
+        "ndk_version": "27.2.12335124",
+        "android_api": "36",
+        "compile_sdk": "36",
+        "is_latest": true,
+        "release_notes": "Major update: Java 17, Gradle 8.14.3, AGP 8.13.0, NDK 27.2, compileSdk 36"
+      },
+      {
         "version": "5.5.0.5",
-        "label": "5.5.0.5 (Latest)",
+        "label": "5.5.0.5",
         "container": "ghcr.io/iotactical/dbsdk-atak-civ:5.5.0.5",
         "java_version": "11",
         "gradle_version": "7.6",
         "android_api": "30",
-        "is_latest": true,
-        "release_notes": "Latest stable release with enhanced features and bug fixes"
+        "is_latest": false,
+        "release_notes": "Stable release with enhanced features and bug fixes"
       },
       {
         "version": "5.4.0.21",

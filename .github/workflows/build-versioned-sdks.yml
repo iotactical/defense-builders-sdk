@@ -51,7 +51,7 @@ jobs:
         ./scripts/workflow-discover-versions.sh discover \
           "atak-civ" \
           "${{ github.event.inputs.version }}" \
-          '["5.3.0.12","5.4.0.21","5.5.0.5"]'
+          '["5.3.0.12","5.4.0.21","5.5.0.5","5.6.0.13"]'
 
   build-base:
     runs-on: ubuntu-latest
@@ -152,7 +152,7 @@ jobs:
         
         # Add proguard file for newer versions
         case "${VERSION}" in
-          "5.4.0.21"|"5.5.0.5")
+          "5.4.0.21"|"5.5.0.5"|"5.6.0.13")
             touch "$sdk_dir/proguard-release-keep.txt"
             ;;
         esac
@@ -210,7 +210,7 @@ jobs:
         cache-to: type=gha,mode=max,scope=${{ matrix.version }}
     
     - name: Tag latest version
-      if: matrix.version == '5.5.0.5'
+      if: matrix.version == '5.6.0.13'
       run: |
         docker buildx imagetools create \
           ${{ env.REGISTRY }}/${{ github.repository_owner }}/dbsdk-atak-civ:${{ matrix.version }} \

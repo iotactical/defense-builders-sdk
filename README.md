@@ -39,15 +39,17 @@ Production-ready development environments for ATAK plugin development with autom
 
 | SDK Version | Container Image | Features | Status |
 |-------------|-----------------|----------|--------|
-| **5.5.0.5** (Latest) | `ghcr.io/iotactical/dbsdk-atak-civ:5.5.0.5` | Enhanced DSM manager, improved docs | ✅ Active |
+| **5.6.0.13** (Latest) | `ghcr.io/iotactical/dbsdk-atak-civ:5.6.0.13` | Java 17, Gradle 8.14.3, NDK 27.2, API 36 | ✅ Active |
+| **5.5.0.5** | `ghcr.io/iotactical/dbsdk-atak-civ:5.5.0.5` | Enhanced DSM manager, improved docs | ✅ Active |
 | **5.4.0.21** | `ghcr.io/iotactical/dbsdk-atak-civ:5.4.0.21` | Action bar APIs, Typst support | ✅ Active |
 | **5.3.0.12** | `ghcr.io/iotactical/dbsdk-atak-civ:5.3.0.12` | Foundation release | ✅ Active |
 
 **All versions include:**
-- Java 11 (Adoptium OpenJDK)
-- Android SDK with API 21+ support
+- Java (v5.6.0.13: Java 17, earlier: Java 11)
+- Android SDK with API 21+ support (v5.6.0.13: up to API 36)
 - Pre-configured development tools
-- Gradle 7.6 with ProGuard
+- Gradle (v5.6.0.13: 8.14.3, earlier: 7.6) with ProGuard
+- NDK support (v5.6.0.13: NDK 27.2)
 - ATAK plugin development templates
 
 ## Quick Start
@@ -61,15 +63,15 @@ Production-ready development environments for ATAK plugin development with autom
 ### Using Locally
 ```bash
 # Pull the latest ATAK-CIV development environment
-docker pull ghcr.io/iotactical/dbsdk-atak-civ:5.5.0.5
+docker pull ghcr.io/iotactical/dbsdk-atak-civ:5.6.0.13
 
 # Run the development environment
 docker run -it --rm \
   -v $(pwd):/workspace \
   -p 8080:8080 \
-  ghcr.io/iotactical/dbsdk-atak-civ:5.5.0.5
+  ghcr.io/iotactical/dbsdk-atak-civ:5.6.0.13
 
-# Or use latest tag (points to 5.5.0.5)
+# Or use latest tag (points to 5.6.0.13)
 docker pull ghcr.io/iotactical/dbsdk-atak-civ:latest
 ```
 
@@ -82,10 +84,10 @@ mkdir my-atak-plugin && cd my-atak-plugin
 docker run -it --rm \
   -v $(pwd):/workspaces/my-plugin \
   -p 8080:8080 \
-  ghcr.io/iotactical/dbsdk-atak-civ:5.5.0.5
-  
+  ghcr.io/iotactical/dbsdk-atak-civ:5.6.0.13
+
 # Inside the container:
-# - Copy plugin template: cp -r /opt/atak-civ/5.5.0.5/PluginTemplate/* .
+# - Copy plugin template: cp -r /opt/atak-civ/5.6.0.13/samples/plugintemplate/* .
 # - Build: ./gradlew civDebug
 # - Deploy to device: adb install app/build/outputs/atak-apks/sdk/*.apk
 ```
@@ -118,7 +120,8 @@ We collect **anonymous usage data** to improve the platform:
 
 ### Container Images
 - `ghcr.io/iotactical/dbsdk-base:latest` - Latest hardened base image
-- `ghcr.io/iotactical/dbsdk-atak-civ:latest` - Latest ATAK-CIV SDK (→ 5.5.0.5)
+- `ghcr.io/iotactical/dbsdk-atak-civ:latest` - Latest ATAK-CIV SDK (-> 5.6.0.13)
+- `ghcr.io/iotactical/dbsdk-atak-civ:5.6.0.13` - ATAK-CIV SDK v5.6.0.13 (Java 17, Gradle 8.14.3)
 - `ghcr.io/iotactical/dbsdk-atak-civ:5.5.0.5` - ATAK-CIV SDK v5.5.0.5
 - `ghcr.io/iotactical/dbsdk-atak-civ:5.4.0.21` - ATAK-CIV SDK v5.4.0.21
 - `ghcr.io/iotactical/dbsdk-atak-civ:5.3.0.12` - ATAK-CIV SDK v5.3.0.12
@@ -171,7 +174,7 @@ docker buildx build -t dbsdk-base:local ./base
 ./scripts/build-versioned-containers.sh build
 
 # Test specific version
-docker run -it --rm ghcr.io/iotactical/dbsdk-atak-civ:5.5.0.5
+docker run -it --rm ghcr.io/iotactical/dbsdk-atak-civ:5.6.0.13
 ```
 
 ### Adding New SDKs
