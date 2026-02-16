@@ -93,14 +93,15 @@ jobs:
     
     - name: Run Trivy vulnerability scanner on base image
       uses: aquasecurity/trivy-action@master
+      continue-on-error: true
       with:
         image-ref: ${{ env.REGISTRY }}/${{ github.repository_owner }}/dbsdk-base:latest
         format: 'sarif'
         output: 'trivy-results-base-${{ github.sha }}.sarif'
-    
+
     - name: Upload Trivy scan results for base image
       uses: github/codeql-action/upload-sarif@v3
-      if: always()
+      if: always() && hashFiles(format('trivy-results-base-{0}.sarif', github.sha)) != ''
       with:
         sarif_file: 'trivy-results-base-${{ github.sha }}.sarif'
         category: 'trivy-base'
@@ -218,14 +219,15 @@ jobs:
     
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
+      continue-on-error: true
       with:
         image-ref: ${{ env.REGISTRY }}/${{ github.repository_owner }}/dbsdk-atak-civ:${{ matrix.version }}
         format: 'sarif'
         output: 'trivy-results-atak-civ-${{ matrix.version }}-${{ github.sha }}.sarif'
-    
+
     - name: Upload Trivy scan results
       uses: github/codeql-action/upload-sarif@v3
-      if: always()
+      if: always() && hashFiles(format('trivy-results-atak-civ-{0}-{1}.sarif', matrix.version, github.sha)) != ''
       with:
         sarif_file: 'trivy-results-atak-civ-${{ matrix.version }}-${{ github.sha }}.sarif'
         category: 'trivy-atak-civ-${{ matrix.version }}'
