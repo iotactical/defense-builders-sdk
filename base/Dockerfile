@@ -57,7 +57,7 @@ ARG TAK_DESIGN_SYSTEM_VERSION=0.1.0
 ENV TAK_DESIGN_SYSTEM_PATH=/opt/tak-design-system
 ENV TAK_DESIGN_SYSTEM_VERSION=${TAK_DESIGN_SYSTEM_VERSION}
 RUN mkdir -p ${TAK_DESIGN_SYSTEM_PATH} && \
-    curl -fsSL "https://github.com/iotactical/tak-design-system/releases/download/v${TAK_DESIGN_SYSTEM_VERSION}/tak-design-system-v${TAK_DESIGN_SYSTEM_VERSION}.tar.gz" \
+    curl -fsSL "https://github.com/iotactical/tak-design-system/releases/download/v${TAK_DESIGN_SYSTEM_VERSION}/tak-design-system-${TAK_DESIGN_SYSTEM_VERSION}.tar.gz" \
     -o /tmp/tak-design-system.tar.gz && \
     tar -xzf /tmp/tak-design-system.tar.gz -C ${TAK_DESIGN_SYSTEM_PATH} && \
     rm /tmp/tak-design-system.tar.gz && \
