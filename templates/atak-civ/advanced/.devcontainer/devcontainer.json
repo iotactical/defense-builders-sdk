@@ -68,7 +68,9 @@
     "ANDROID_HOME": "/opt/android-sdk",
     "ANDROID_SDK_ROOT": "/opt/android-sdk",
     "JAVA_HOME": "/usr/lib/jvm/msopenjdk-current",
-    "GRADLE_OPTS": "-Xmx2048m -Dorg.gradle.daemon=false"
+    "GRADLE_OPTS": "-Xmx2048m -Dorg.gradle.daemon=false",
+    "TAK_DESIGN_SYSTEM_PATH": "/opt/tak-design-system",
+    "TAK_DESIGN_ATAK_RES": "/opt/tak-design-system/platforms/atak/res"
   },
 
   "forwardPorts": [8080, 5037, 3000, 8000],

@@ -26,7 +26,9 @@
     "ATAK_SDK_VERSION": "${ATAK_SDK_VERSION:-5.5.0.5}",
     "ANDROID_HOME": "/opt/android-sdk",
     "ANDROID_SDK_ROOT": "/opt/android-sdk",
-    "JAVA_HOME": "/usr/lib/jvm/msopenjdk-current"
+    "JAVA_HOME": "/usr/lib/jvm/msopenjdk-current",
+    "TAK_DESIGN_SYSTEM_PATH": "/opt/tak-design-system",
+    "TAK_DESIGN_ATAK_RES": "/opt/tak-design-system/platforms/atak/res"
   },
 
   "forwardPorts": [8080, 5037],

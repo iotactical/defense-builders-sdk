@@ -12,6 +12,7 @@
         "ndk_version": "27.2.12479018",
         "android_api": "36",
         "compile_sdk": "36",
+        "design_system_version": "0.1.0",
         "is_latest": true,
         "release_notes": "Major update: Java 17, Gradle 8.14.3, AGP 8.13.0, NDK 27.2, compileSdk 36"
       },
@@ -22,6 +23,7 @@
         "java_version": "11",
         "gradle_version": "7.6",
         "android_api": "30",
+        "design_system_version": "0.1.0",
         "is_latest": false,
         "release_notes": "Stable release with enhanced features and bug fixes"
       },
@@ -32,6 +34,7 @@
         "java_version": "11",
         "gradle_version": "7.6",
         "android_api": "30",
+        "design_system_version": "0.1.0",
         "is_latest": false,
         "release_notes": "Stable release with improved performance and compatibility"
       },
@@ -42,6 +45,7 @@
         "java_version": "11",
         "gradle_version": "7.6",
         "android_api": "30",
+        "design_system_version": "0.1.0",
         "is_latest": false,
         "release_notes": "Legacy stable release for compatibility testing"
       }

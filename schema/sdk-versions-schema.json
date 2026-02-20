@@ -62,6 +62,10 @@
                 "type": "string",
                 "description": "Required Python version"
               },
+              "design_system_version": {
+                "type": "string",
+                "description": "TAK Design System version bundled in this SDK image"
+              },
               "is_latest": {
                 "type": "boolean",
                 "description": "Whether this is the latest version"

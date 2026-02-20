@@ -166,6 +166,23 @@ else
     warn "Gradle wrapper not found"
 fi
 
+# Integrate TAK Design System tokens
+if [ -d "$TAK_DESIGN_SYSTEM_PATH" ]; then
+    log "Integrating TAK Design System tokens..."
+
+    # Copy Android XML resources to plugin res/ directory
+    if [ -d "$TAK_DESIGN_ATAK_RES/values" ] && [ -d "app/src/main/res" ]; then
+        mkdir -p app/src/main/res/values
+        cp "$TAK_DESIGN_ATAK_RES/values/tak_colors.xml" app/src/main/res/values/ 2>/dev/null || true
+        cp "$TAK_DESIGN_ATAK_RES/values/tak_dimens.xml" app/src/main/res/values/ 2>/dev/null || true
+        success "TAK Design System resources copied to app/src/main/res/"
+    fi
+
+    success "TAK Design System v${TAK_DESIGN_SYSTEM_VERSION:-unknown} integrated"
+else
+    warn "TAK Design System not found at $TAK_DESIGN_SYSTEM_PATH"
+fi
+
 # Final setup
 log "Setting up development environment..."
 
